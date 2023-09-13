@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://dragons.divzoon.com/Identity/Images/2023/SVG/LLogo.svg"
+        type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>To Do List VDOM</title>
+    <link rel="stylesheet" href="dist/output.css" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body class="h-screen flex justify-center items-center ">
+    <div
+        class="w-[50%] max-lg:w-[60%] max-md:w-[75%] max-sm:w-[100%] p-8 shadow-[#8e61be] shadow-lg capitalize bg-[#8e61be] rounded-[0.5rem]">
+        <h1 class=" mb-8 font-black text-[1.6rem] italic  max-sm:text-[0.975rem] text-center  rounded-md">
+            to do list VDOM
+        </h1>
+        <h4 class="text-[#0e0d0d] text-[1.15rem] font-black max-sm:text-[0.975rem]">
+            task list
+        </h4>
+        <div class="my-8">
+            <input type="text" placeholder="Your Task" id="input_add"
+                class="text-left w-full outline-none duration-[0.5s] bg-transparent p-2 border-b-2 border-b-[#fffbeb]  text-[1rem] max-sm:text-[0.9rem]  " />
+        </div>
+        <div class="container_add_task my-8">
+            <button
+                class="btn_add_task capitalize p-2 max-sm:p-1 rounded-md bg-[#170d2c] duration-[0.5s] hover:border-t-[#fffbeb] border-t-[2px] border-t-[solid] border-t-[#8e61be] text-[#fffbeb] text-[1rem] max-sm:text-[0.8rem]">
+                add task
+            </button>
+        </div>
+        <hr class="w-full" />
+        <h4 class="my-8  text-[1.15rem] font-black max-sm:text-[0.975rem]">
+            tasks
+        </h4>
+
+        <div class="containList"></div>
+        <div class="container_clear_tasks">
+            <button
+                class="btn_clear_tasks capitalize p-2 max-sm:p-1 rounded-md bg-[#170d2c] duration-[0.5s] hover:border-t-[#fffbeb] border-t-[2px] border-t-[solid] border-t-[#8e61be] text-[#fffbeb] text-[1rem] max-sm:text-[0.8rem]">
+                clear tasks
+            </button>
+        </div>
+    </div>
+
+    <script src="dynamic.js"></script>
+</body>
+
+</html>
