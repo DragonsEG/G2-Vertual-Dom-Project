@@ -1,0 +1,72 @@
+// Define a simple virtual DOM element structure
+function createElement(type, props = {}, children = []) {
+   return {
+     type,
+     props: props,
+     children: children,
+   };
+ }
+ 
+ // Render function that converts the virtual DOM to a real DOM
+ function render(element) {
+   if (typeof element === 'string' || typeof element === 'number') {
+     return document.createTextNode(String(element));
+   }
+ 
+   const domElement = document.createElement(element.type);
+ 
+   for (let propName in element.props) {
+     if (element.props.hasOwnProperty(propName)) {
+       domElement.setAttribute(propName, element.props[propName]);
+     }
+   }
+ 
+   for (const child of element.children) {
+     const childElement = render(child);
+     domElement.appendChild(childElement);
+   }
+ 
+   return domElement;
+ }
+ 
+ // Function to convert a real DOM element to a virtual DOM representation
+ function realDOMToVirtualDOM(element) {
+   if (!element) {
+     return null;
+   }
+ 
+   const virtualDOM = {
+     type: element.tagName.toLowerCase(),
+     props: {},
+     children: [],
+   };
+ 
+   // Extract attributes from the real DOM element and store them in the virtual DOM
+   for (let i = 0; i < element.attributes.length; i++) {
+     const attribute = element.attributes[i];
+     virtualDOM.props[attribute.name] = attribute.value;
+   }
+ 
+   // Recursively convert child nodes to virtual DOM
+   for (let i = 0; i < element.childNodes.length; i++) {
+     const childNode = element.childNodes[i];
+     if (childNode.nodeType === 1) {
+       // If it's an element node, recursively convert it
+       virtualDOM.children.push(realDOMToVirtualDOM(childNode));
+     } else if (childNode.nodeType === 3) {
+       // If it's a text node, extract the text content
+       virtualDOM.children.push(childNode.textContent);
+     }
+   }
+ 
+   return virtualDOM;
+ }
+ 
+ // Example usage
+ const realDOMElement = document.getElementById('root');
+ const virtualDOMRepresentation = realDOMToVirtualDOM(realDOMElement);
+ const parent = realDOMElement.parentElement;
+ const virtualDOMElement = render(createElement(virtualDOMRepresentation));
+ 
+ // Replace the real DOM element with the virtual DOM element
+ parent.replaceChild(virtualDOMElement, realDOMElement);
